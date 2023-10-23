@@ -30,19 +30,29 @@ jobs:
         cp -r public temp/
         cp -r package.json temp/
         cp -r Dockerfile temp/
-        
-    # - name: Configure AWS credentials
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #     aws-access-key-id: ${{ secrets.AMAZON_USER_NAME }}
-    #     aws-secret-access-key: ${{ secrets.AMAZON_SECRECT_KEY }}
-    #     aws-region: ${{ env.AWS_REGION }}
+      
+    # - name: Deploy to Server 1
+    #   uses: easingthemes/ssh-deploy@main
+    #   env:
+    #     SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+    #     REMOTE_HOST: ec2-34-227-84-173.compute-1.amazonaws.com
+    #     REMOTE_USER: Amazon Linux
+    #     TARGET: /
 
+    # - name: Executing remote ssh commands using ssh key
+    #   uses: appleboy/ssh-action@master
+    #   with:
+    #     host: ec2-34-227-84-173.compute-1.amazonaws.com
+    #     username: Amazon Linux
+    #     key: ${{ secrets.EC2_SSH_KEY }}
+    #     script: |
+    #       echo "hello"
+          
     - name: Copy files to EC2
       uses: appleboy/ssh-action@master
       with:
-        host: ec2-34-227-84-173.compute-1.amazonaws.com
-        username: Amazon Linux
+        host: ec2-18-234-73-46.compute-1.amazonaws.com
+        username: ec2-user
         key: ${{ secrets.AMAZON_SECRET_KEY }}
         script: |
           echo "hello"
