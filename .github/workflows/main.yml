@@ -44,5 +44,6 @@ jobs:
         host: ${{ secrets.AMAZON_HOST }}
         username: ${{ secrets.AMAZON_USER_NAME }}
         key: ${{ secrets.AMAZON_SECRECT_KEY }}
-        source: "temp/*"
-        target: "/home/ec2-user/app/ssr"
+        script: |
+          rsync -av --delete $GITHUB_WORKSPACE/temp/* username@${{ secrets.HOST }}:/home/ec2-user/app/ssr
+
