@@ -23,5 +23,5 @@ COPY --from=builder /usr/src/app/package.json ./package.json
 # Expose port 3000
 EXPOSE 3000
 
-# Start the application
+# Start the application888888888
 CMD ["npm", "run", "start"]
