@@ -31,8 +31,15 @@ jobs:
         cp -r package.json temp/
         cp -r Dockerfile temp/
         
+    # - name: Configure AWS credentials
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-access-key-id: ${{ secrets.AMAZON_USER_NAME }}
+    #     aws-secret-access-key: ${{ secrets.AMAZON_SECRECT_KEY }}
+    #     aws-region: ${{ env.AWS_REGION }}
+
     - name: Copy files to EC2
-      uses: easingthemes/ssh-deploy@main
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.AMAZON_HOST }}
         username: ${{ secrets.AMAZON_USER_NAME }}
