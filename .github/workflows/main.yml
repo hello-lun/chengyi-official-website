@@ -1,0 +1,40 @@
+name: Deploy to EC2
+on:
+  push:
+    branches:
+      - main  # adjust this to your main branch if it's named differently
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14  # adjust this to your project's node version
+    
+    - name: Install dependencies and build
+      run: |
+        npm ci
+        npm run build
+
+    - name: Prepare files
+      run: |
+        mkdir temp
+        cp -r .next temp/
+        cp -r public temp/
+        cp -r package.json temp/
+        cp -r Dockerfile temp/
+        
+    - name: Copy files to EC2
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.AMAZON_HOST }}
+        username: ${{ secrets.AMAZON_USER_NAME }}
+        key: ${{ secrets.AMAZON_SECRECT_KEY }}
+        source: "temp/*"
+        target: "/home/ec2-user/app/ssr"
