@@ -59,6 +59,7 @@ jobs:
         username: ec2-user
         key: ${{ secrets.AMAZON_SECRET_KEY }}
         script: |
-          echo "hhhhhhhhhh-----kkkkkkk"
+          cd /home/ec2-user/app
+          ls
 
 
