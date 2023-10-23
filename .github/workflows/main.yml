@@ -43,7 +43,7 @@ jobs:
       with:
         host: ec2-34-227-84-173.compute-1.amazonaws.com
         username: ec2-user
-        key: ${{ secrets.AMAZON_SECRECT_KEY }}
+        key: $AMAZON_SECRECT_KEY
         script: |
           rsync -av --delete $GITHUB_WORKSPACE/temp/* ec2-user@ec2-34-227-84-173.compute-1.amazonaws.com:/home/ec2-user/app/ssr
 
