@@ -43,7 +43,31 @@ jobs:
       with:
         host: ec2-34-227-84-173.compute-1.amazonaws.com
         username: ec2-user
-        key: $AMAZON_SECRECT_KEY
+        key: MIIEpAIBAAKCAQEArRQ8ADl+b/K+EqMwO6bUWswf58ykyW91Q762zAxPA9KjHdkW
+            i0L0e/vV37dafGJTWGTkV8hWw3t9l5nEFIdDaAC3T4bo9P39+StRvjYKGkUeXPW9
+            atBXj9Id0hLVhieo6lVlDIpOwcYvQVo4hIEtFeT1Lh/yltdTGOe0fgc9jRTtwhKV
+            /537JhVEVVBAa3HMdVxivDLXKMcX2DSpebrUhKg6QVJdcc6a/oGEk7DmBxcOYssH
+            /+QoWAY/gKGx2S/zKusKpdzCUP5g55YFljWV3J3WEunonddYeqCMOz1ztbWiG8iI
+            wfQOz50PBVdPktbtjFMp8GTGeHN8pnOUhtmd3QIDAQABAoIBAAUSEq/u/0VIV0k0
+            frVArff7AvRHioxcN5NEgxZ3RdlW0nCNa5uo2oDHX/yt4njCaK6uRgJMXD5d39AR
+            MS1oyRDC9Jvf1/NVfZtPKZXo/2LFo54VlPcMI4STI0yEQL0tbEVxOwSjCKukor3H
+            ZuB66Fc73fL7/J9ur4CLST5n9+WqKsdnQU7xjMlcfxlkEtMd/vLbE3M2Ogy6Za+a
+            b60B+1Ug7yj1EZNFITuLINrH377Fa0HcbHSuvds/t5PS0Xyt26zUPr0ElAN8hCS4
+            1XfNnZbbZffgm200bLIu9dsyRwUtQO85RL/j6QIs4xopYDqV1uaAiqkvzjVxbEDY
+            W6d20gECgYEA+p98uzpiATiSqVvH0lJU+xTVmuT5wgj/tmVmckYcl+uHPPvQemX8
+            oq28I0KrqLjEE+rEBUjJdvrR+a+OPJTLy9SqseOzLbbHTvPBnfMUgpKef24Bc5nl
+            s/FpKZxEGYR/mRjuEH7secD1FMACAzY6s6pD4tC6jVfnSX0JqIDN8fcCgYEAsMrY
+            9a1i8hKsJNs+RJsi8UN034kh+yFRubcOT88hZC71wDgkv80PPH4OZMuXCThNX+Xv
+            xLN6WrLcbeDBru8lLE/cq8pA6NxHHpZdtnxRbErusfDU0QpdH2NlPyIn/XcKjb9c
+            EsYkQy3evZkAtoARXIERQY9WCX52o+0Qyen7ecsCgYBz+JUJNizfj8Qd5kCCzGJS
+            hQOK12XTKcLaLfXH7zWP/wbna0a/PK44wNgMIO+59TWWWc42+8Vt7wZ22Yuh8OCV
+            A2WxR0JEZw23NQhlBHR7L0l0gfzd91rZd15ISO0iObOprmWK8JCQjn9aCLdlsRRc
+            yu7658dLXF/EG736YQ/rZQKBgQChadMFHDVGx32ceQA1K1+P4AMJRO9dlmJDqbrL
+            a1YVXjrKMXh8FgFfPchuhuNza5BZilqLwUJpJPzU5WxxB69s8c2Mm7D/6n6Ukr0l
+            LAQ7V37vv+7OnSPA0MNUDR9t8A4WtSyfh4D8RRklClj4R52SU9UpgnEPYgN4T64Q
+            bC1KWQKBgQCE0FN+lSHMufNDc5JTOQgRoYU0fsoALJvexMd5tZUji9JLNduo6wSP
+            UhZiJCmRMdiNurxMto22s6qxrVVQ+ii83wySY2ydpVB+Yi6WEYyttNfdpTmURo1Y
+            KtvjO3xPmb/aPz/f3aoNImn1m2KFaCJhGD4fvJgEUCmo36RS0n5Usw==
         script: |
           rsync -av --delete $GITHUB_WORKSPACE/temp/* ec2-user@ec2-34-227-84-173.compute-1.amazonaws.com:/home/ec2-user/app/ssr
 
