@@ -58,7 +58,7 @@ jobs:
         host: ec2-18-234-73-46.compute-1.amazonaws.com
         username: ec2-user
         password: ${{ secrets.AMAZON_SECRET_KEY }}
-        source: '.next,package.json,public,Dockerfile' # 需要上传的文件
+        source: '.next,package.json,public,Dockerfile,tsconfig.json' # 需要上传的文件
         target: '/home/ec2-user/app/ssr'
 
 
