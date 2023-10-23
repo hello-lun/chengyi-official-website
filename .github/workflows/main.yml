@@ -47,7 +47,11 @@ jobs:
     #     key: ${{ secrets.EC2_SSH_KEY }}
     #     script: |
     #       echo "hello"
-          
+    - name: Print GITHUB_WORKSPACE
+      run: |
+        echo "path: $GITHUB_WORKSPACE"
+        ls $GITHUB_WORKSPACE
+
     - name: Copy files to EC2
       uses: appleboy/ssh-action@master
       with:
