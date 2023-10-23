@@ -41,9 +41,9 @@ jobs:
     - name: Copy files to EC2
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.AMAZON_HOST }}
+        host: ec2-34-227-84-173.compute-1.amazonaws.com
         username: ${{ secrets.AMAZON_USER_NAME }}
         key: ${{ secrets.AMAZON_SECRECT_KEY }}
         script: |
-          rsync -av --delete $GITHUB_WORKSPACE/temp/* ec2-user@${{ secrets.AMAZON_HOST }}:/home/ec2-user/app/ssr
+          rsync -av --delete $GITHUB_WORKSPACE/temp/* username@ec2-34-227-84-173.compute-1.amazonaws.com:/home/ec2-user/app/ssr
 
