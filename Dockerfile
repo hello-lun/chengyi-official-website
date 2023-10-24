@@ -6,7 +6,8 @@ WORKDIR /usr/src/app
 COPY . .
 # Copy the project files into the container
 # COPY ./scripts/package.json  .
-RUN npm install --omit=dev
+RUN npm i pnpm -g
+RUN pnpm install --prod
 
 # Start a new stage with the base image
 FROM node:16 AS runner
