@@ -47,7 +47,7 @@ const Counter = ({ cls = "pt-40 pb-60"  }) => {
                   <div className="counter__content">
                     <h4 className="counter__title">
                       <span className="counter">
-                        <Count  number={item.counter} />
+                        <Count number={item.counter} />
                       </span>
                     </h4>
                     <p className="two-line-ellipsis">{item.text}</p>

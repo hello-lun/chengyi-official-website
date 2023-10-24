@@ -70,7 +70,7 @@ const About = () => {
                   <img src={left_img} alt="about-bg-img" />
                   <div className="about__exprience">
                     <h3 className="counter">
-                      <Count add_style={true} number={experience_count} />
+                      <Count add_style={true} number={experience_count} class_style="p-flex" />
                     </h3>
                     <i>{experience_count_text}</i>
                   </div>

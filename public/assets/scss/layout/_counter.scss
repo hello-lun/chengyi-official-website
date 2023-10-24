@@ -19,13 +19,15 @@
   .counter-area {
     padding-bottom: 20px;
   }
-
-  .d-flex  {
+  .couter-p {
     font-size: 28px;
   }
 }
 
 .counter {
+  &_p {
+    font-size: 48px;
+  }
   &__item {
     border: 1px solid var(--tp-border-primary);
     padding: 50px 30px 50px 30px;
