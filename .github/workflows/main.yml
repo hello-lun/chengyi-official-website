@@ -19,7 +19,7 @@ jobs:
     
     - name: Install dependencies and build
       run: |
-        echo "file: ${{ env.EC2_NEXTJS_SOURCE }}"
+        echo "file: ${{ vars.EC2_NEXTJS_SOURCE }}"
         npm i pnpm -g
         pnpm i
         npm run build
@@ -30,7 +30,7 @@ jobs:
         host: ${{ secrets.AMAZON_EC2_HOST }}
         username: ${{ secrets.AMAZON_EC2_NAME }}
         key: ${{ secrets.AMAZON_SECRET_KEY }}
-        source: '.next,package.json,public,Dockerfile,tsconfig.json' # 需要上传的文件
+        source: ${{ vars.EC2_NEXTJS_SOURCE }} # 需要上传的文件
         target: '/home/ec2-user/app/ssr'
 
     - name: shell EC2
