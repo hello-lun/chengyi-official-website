@@ -32,7 +32,7 @@ const Message = () => {
             <p style="margin-top: 30px; font-size: 20px; color: orange;">${data.message || '✔官网邮件发送测试'}</p>
           </div>`,
           subject: 'chengyi（成益）跨境贸易公司',
-          to: storeData.email,
+          email: storeData.email,
         }
       });
       message.success('send message success') 
