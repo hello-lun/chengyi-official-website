@@ -5,7 +5,7 @@ import axios, {
   InternalAxiosRequestConfig
 } from 'axios';
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.baseURL = process.env.REACT_APP_API_URL + '/api';
 axios.defaults.headers.head['Content-Type'] = 'application/json;chartset=utf-8';
 axios.defaults.withCredentials = true;
 export interface IResponse<T = any> {
@@ -22,7 +22,6 @@ const axiosInstance: AxiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     // 可以添加请求头、认证信息等
-    config.url = `/api${config.url}`; // 添加接口前缀 "/api"
     return config;
   },
   (error: any) => {

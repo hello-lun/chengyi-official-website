@@ -4,6 +4,8 @@ import { createRouter } from "next-connect";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
+const baseURL = process.env.REACT_APP_API_URL;
+
 router.get((req, res, next) => {
   const { params } = req.query; // params 是一个数组，包含所有路径段
   // 基于第一个参数判断是哪个API
@@ -43,7 +45,7 @@ function goodsCategory(req, res) {
 
 async function goodsGet(req, res) {
   // 假设这是你要请求的外部服务的URL
-  const externalServiceUrl = 'http://localhost:8888/api/goods/get';
+  const externalServiceUrl =  baseURL + '/goods/get';
   // 请求外部服务
   const response = await axios.get(externalServiceUrl);
   // 返回外部服务的响应数据

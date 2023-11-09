@@ -7,7 +7,7 @@ import http from '@/utils/http';
 import { chunk } from 'lodash';
 import { isMobile } from "@/utils/utils";
 
-const baseUrl = 'http://192.168.0.58:8888/api/';
+const baseUrl = process.env.REACT_APP_IMG_URL;
 
 // slider setting
 const setting = {

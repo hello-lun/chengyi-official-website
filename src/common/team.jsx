@@ -8,7 +8,7 @@ import styles from './commom.module.scss';
 import http from '@/utils/http';
 import SocialLinks from "@/common/social-links";
 
-const baseUrl = 'http://192.168.0.58:8888/api/';
+const baseUrl = process.env.REACT_APP_IMG_URL;
 
 // slider setting
 const setting = {
