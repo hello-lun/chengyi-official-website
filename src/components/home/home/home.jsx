@@ -19,9 +19,9 @@ const HomeOne = () => {
       <MessageDilog />
       <HeroBanner />
       <Gallery />
+      <ServiceArea />
       <About />
       <Counter />
-      <ServiceArea />
       <Specialists />
       <Team />
       {/* <Appointment /> */}

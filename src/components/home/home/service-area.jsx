@@ -2,28 +2,34 @@ import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Link from "next/link";
+import styles from './home.module.scss';
+import http from '@/utils/http';
+import { chunk } from 'lodash';
+import { isMobile } from "@/utils/utils";
+
+const baseUrl = 'http://192.168.0.58:8888/api/';
 
 // slider setting
 const setting = {
-  slidesPerView: 4,
-  spaceBetween: 30,
-  breakpoints: {
-    1200: {
-      slidesPerView: 4,
-    },
-    992: {
-      slidesPerView: 3,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    576: {
-      slidesPerView: 1,
-    },
-    0: {
-      slidesPerView: 1,
-    },
-  },
+  // slidesPerView: 4,
+  // spaceBetween: 30,
+  // breakpoints: {
+  //   1200: {
+  //     slidesPerView: 4,
+  //   },
+  //   992: {
+  //     slidesPerView: 3,
+  //   },
+  //   768: {
+  //     slidesPerView: 2,
+  //   },
+  //   576: {
+  //     slidesPerView: 1,
+  //   },
+  //   0: {
+  //     slidesPerView: 1,
+  //   },
+  // },
   // Navigation arrows
   navigation: {
     nextEl: ".services-n",
@@ -31,74 +37,38 @@ const setting = {
   },
 };
 
-// slider_content
-const slider_content = [
-  {
-    id: 1,
-    icon: "flaticon-hemoglobin-test-meter",
-    title: "PLC modules",
-    des: "PLC (Programmable Logic Controller) modules execute user-defined control functions, crucial for automation and operational efficiency in industrial settings",
-    color_icon: "",
-    color: "",
-    img: '/assets/img/chengyi/goods01.png',
-  },
-  {
-    id: 2,
-    icon: "flaticon-blood-test",
-    title: "CPU modules",
-    des: "CPU (Central Processing Unit) modules execute software instructions, facilitating data processing and operations essential for electronic device functionality",
-    color_icon: "pink-icon",
-    color: "pink-hexa",
-    img: '/assets/img/chengyi/goods02.png',
-  },
-  {
-    id: 3,
-    icon: "flaticon-biochemistry",
-    title: "frequency converters",
-    des: "Frequency converters adjust power frequency and voltage, controlling AC motor speed, enhancing operational efficiency in industrial applications",
-    color_icon: "green-icon",
-    color: "green-hexa",
-    img: '/assets/img/chengyi/goods03.png',
-  },
-  {
-    id: 4,
-    icon: "flaticon-dna-1",
-    title: "Motor Control",
-    des: "Motor Control refers to the processes and systems that manage and regulate the performance and operation of electric motors, ensuring precise movement",
-    color_icon: "sky-icon",
-    color: "sky-hexa",
-    img: '/assets/img/chengyi/goods04.png',
-  },
-  {
-    id: 5,
-    icon: "flaticon-dna-1",
-    title: "Communication card",
-    des: "Communication cards facilitate data transmission between devices in a network, enabling seamless interaction and connectivity for enhanced operational efficiency",
-    color_icon: "sky-icon",
-    color: "sky-hexa",
-    img: '/assets/img/chengyi/goods05.png',
-  },
-];
 
 const ServiceArea = () => {
   const [isLoop, setIsLoop] = useState(false);
+  const [goodsList, setGoodsList] = useState([]);
   useEffect(() => {
     setIsLoop(true);
+    http({
+      method: 'get',
+      url: '/goods/get',
+      data: {
+        page: 1,
+        size: 2
+      },
+    }).then(res => {
+      setGoodsList(chunk(res?.list, isMobile() ? 4 : 8));
+    });
+
   }, []);
   return (
     <>
       <section
-        className="services-area pt-35 pb-90 grey-bg mt-30 fix"
+        className="services-area pt-35 pb-90 grey-bg fix"
         style={{ backgroundImage: `url(/assets/img/shape/shape-bg-01.png)` }}
       >
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-8 col-md-8 col-12">
+        <div>
+          <div className={`${styles["goods-ptitle"]} row align-items-center`}>
+            <div className={`col-lg-8 col-md-8 col-12`}>
               <div className="tp-section">
                 <span className="tp-section__sub-title left-line mb-20">
-                  our Services
+                  our Goods
                 </span>
-                <h3 className="tp-section__title mb-50">Components Area</h3>
+                <h3 className="tp-section__title mb-50">Goods Area</h3>
               </div>
             </div>
             <div className="col-lg-4 col-md-4 col-12">
@@ -113,27 +83,43 @@ const ServiceArea = () => {
             </div>
           </div>
           <div className="services-slider  wow fadeInUp" data-wow-delay=".3s">
-            <div>
-              <Swiper
-                {...setting}
-                loop={isLoop}
-                modules={[Navigation]}
-                className="service-active"
-              >
-                {slider_content.map((item) => (
-                  <SwiperSlide key={item.id}>
-                    <div className="services-item mb-30" style={{padding: 0}}>
-                      <img src={item.img} width="100%" height="100%" />
-                      <div className="services-item__content" style={{padding: "0 50px 10px 50px"}}>
-                        <h4 className="services-item__tp-title mb-20">
-                          <Link href="/services-details">{item.title}</Link>
-                        </h4>
-                        <p style={{marginBottom: '10px'}}>{item.des}</p>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+            <div className={styles["goods"]}>
+              { goodsList.length > 0 && 
+                <Swiper
+                  {...setting}
+                  loop={isLoop}
+                  modules={[Navigation]}
+                >
+                  {goodsList.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <ul className={`services-item mb-30 ${styles.imgContent}`}>
+                        {
+                          item.map(ele => (
+                            <li key={ele.id}>
+                              <div>
+                                <img src={baseUrl + ele.images} alt="" />
+                              </div>
+                              <div className={styles.content}>
+                                <div className={styles.title}>{ele.title}</div>
+                                <p className={styles.pText}>{ele.details}</p>
+                              </div>
+                            </li>
+                          ))
+                        }
+                      </ul>
+                      {/* <div className="services-item mb-30" style={{padding: 0}}>
+                        <img src={item.img} width="100%" height="100%" />
+                        <div className="services-item__content" style={{padding: "0 50px 10px 50px"}}>
+                          <h4 className={`services-item__tp-title mb-20 ${styles["ellipsis-1"]}`}>
+                            <Link href="/services-details">{item.title}</Link>
+                          </h4>
+                          <p style={{marginBottom: '10px'}} className={styles["ellipsis-3"]}>{item.des}</p>
+                        </div>
+                      </div> */}
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              }
             </div>
           </div>
         </div>

@@ -4,11 +4,16 @@
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
-    padding: 20px 42px;
+    padding: 10px 42px;
     border-radius: 5px;
     background: var(--tp-common-white);
+    color: var(--tp-text-2);
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+
     &:hover {
-        color: var(--tp-icon-green);
+      color: var(--tp-icon-green);
+      border: 1px solid #ddd;
+      box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
     }
     & span {
         color: var(--tp-text-2);
@@ -16,10 +21,10 @@
         text-transform: uppercase;
     }
     @media #{$xxl} {
-        padding: 20px 30px;
+        padding: 10px 30px;
     }
     @media #{$xl} {
-        padding: 20px 15px;
+        padding: 10px 15px;
     }
     @media #{$md} {
         box-shadow: rgba(100, 100, 111, 0.1) 1px 5px 20px 1px;

@@ -54,7 +54,7 @@
   padding: 70px 55px 70px 50px;
   border-radius: 5px;
   @media #{$xs} {
-    padding: 50px 25px 50px 25px;
+    padding: 50px 10px;
   }
   @media #{$md} {
     padding: 50px 20px 50px 35px;
@@ -210,7 +210,7 @@
 .tp-services {
   justify-content: flex-end;
   @media #{$xs} {
-    justify-content: start;
+    justify-content: center;
     margin-bottom: 30px;
   }
   & .services-p {

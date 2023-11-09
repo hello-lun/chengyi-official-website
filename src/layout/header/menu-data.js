@@ -2,15 +2,15 @@ const menu_data = [
   {
     id: 1,
     mega_menu: false,
-    has_dropdown: true,
+    // has_dropdown: true,
     title: "Home",
     link: "/",
     active: "active",
-    sub_menus: [
-      { link: "/", title: "Home Style 1" },
-      { link: "/", title: "Home Style 2" },
-      { link: "/", title: "Home Style 3" },
-    ],
+    // sub_menus: [
+    //   { link: "/", title: "Home Style 1" },
+    //   { link: "/", title: "Home Style 2" },
+    //   { link: "/", title: "Home Style 3" },
+    // ],
   },
   // {
   //   id: 2,
@@ -67,13 +67,13 @@ const menu_data = [
   //     { link: "/blog-details", title: "Blog Details" },
   //   ],
   // },
-  {
-    id: 2,
-    mega_menu: false,
-    has_dropdown: false,
-    title: "Contact",
-    link: "/contact",
-    active: "",
-  },
+  // {
+  //   id: 2,
+  //   mega_menu: false,
+  //   has_dropdown: false,
+  //   title: "Contact",
+  //   link: "/contact",
+  //   active: "",
+  // },
 ];
 export default menu_data;

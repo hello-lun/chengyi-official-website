@@ -51,7 +51,6 @@ const Header = () => {
                       <circle cx="2" cy="12" r="2" fill="#0E63FF" />
                     </svg>
                     <span>Tel/Wechat/Whatsapp:</span>+8613610307032
-
                   </a>
                 </div>
                 <button
@@ -89,6 +88,32 @@ const Header = () => {
                   </nav>
                 </div>
               </div>
+              
+              <div className="col-xxl-2 tp-bt-btn-banner  mr-30">
+                  <a className="tp-bt-btn" target="_blank" href="https://wa.me/+8613725293855?text=Hello" rel="noreferrer">
+                    <span style={{marginRight: '10px'}}>
+                      <svg
+                        width="14"
+                        height="19"
+                        viewBox="0 0 14 19"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle cx="2" cy="2" r="2" fill="#0E63FF" />
+                        <circle cx="7" cy="2" r="2" fill="#0E63FF" />
+                        <circle cx="12" cy="2" r="2" fill="#0E63FF" />
+                        <circle cx="12" cy="7" r="2" fill="#0E63FF" />
+                        <circle cx="12" cy="12" r="2" fill="#0E63FF" />
+                        <circle cx="7" cy="7" r="2" fill="#0E63FF" />
+                        <circle cx="7" cy="12" r="2" fill="#0E63FF" />
+                        <circle cx="7" cy="17" r="2" fill="#0E63FF" />
+                        <circle cx="2" cy="7" r="2" fill="#0E63FF" />
+                        <circle cx="2" cy="12" r="2" fill="#0E63FF" />
+                      </svg>
+                    </span>
+                    Contact Us
+                  </a>
+                </div>
               {/* <div className="col-xxl-3 col-lg-3 d-flex align-items-center justify-content-end">
                 <div className="tp-bt-btn-banner">
                   <a className="tp-bt-btn" style={{padding: '10px 10px'}} href="tel:123456">

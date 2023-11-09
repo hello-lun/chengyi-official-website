@@ -1,4 +1,98 @@
+@use "../../../../public/assets/scss/utils/breakpoints";
+
+@import "/public/assets/scss/utils/_mixins.scss";
+
+.goods-ptitle {
+  padding: 0 100px;
+
+  @media #{breakpoints.$xs} {
+    padding: 0 30px;
+  }
+
+}
 
 .form {
   padding: 30px 30px;
+}
+
+.ellipsis-1 {
+  // @include ellipsis();
+}
+
+.ellipsis-3 {
+  @include ellipsis(3);
+}
+
+.imgContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+
+  @media #{breakpoints.$xs} {
+    gap: 10px;
+  }
+
+  li {
+    padding: 0;
+    flex: 1 0 23%;
+    max-width: 23%;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    padding: 15px 15px;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+
+    @media #{breakpoints.$xs} {
+      flex: 1 0 48%;
+      max-width: 48%;
+      padding: 0;
+    }
+
+
+    &:hover {
+      box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.5);
+      .mask {
+        opacity: 0.6;
+      }
+    }
+
+    .content {
+      @media #{breakpoints.$xs} {
+        padding: 0 10px;
+      }
+    }
+
+    .title {
+      padding: 15px 0;
+      font-size: 22px;
+      // @include ellipsis(1);
+      overflow:hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      -o-text-overflow:ellipsis;
+      font-weight: 500;
+
+      @media #{breakpoints.$xs} {
+        font-size: 18px;
+      }
+    }
+
+    .pText {
+      @include ellipsis;
+    }
+
+    img {
+      width: 100%; /* 使图片填满列表项 */
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+      @media #{breakpoints.$xs} {
+        height: 130px;
+      }
+    }
+  }
 }

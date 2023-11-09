@@ -115,3 +115,12 @@
         -o-box-shadow: $shadow;       
             box-shadow: $shadow;
     }
+    
+    @mixin ellipsis($lines: 2) {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: $lines;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+    }

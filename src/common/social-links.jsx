@@ -2,44 +2,48 @@ import { WhatsAppOutlined, WechatOutlined, PhoneOutlined, MailOutlined } from '@
 
 const social_links = [
   {
-    link: "https://wa.me/+8613725293855?text=Hello",
+    link: (value) => `https://wa.me/${value || "+8613725293855"}?text=Hello`,
     target: "_blank",
     icon: <WhatsAppOutlined className="footer-widget_linkIcon" />,
     color: "tp-f-youtube",
+    type: 'whatsapp'
   },
   {
-    link: "",
+    link: () => '',
     target: "_blank",
     icon: <WechatOutlined className="footer-widget_linkIcon" />,
     color: "tp-f-twitter",
+    type: 'wechat'
   },
   {
-    link: "tel: +8613610307032",
+    link: (value) => `tel: ${value || "+8613610307032"}`,
     target: "_blank",
     icon: <PhoneOutlined className="footer-widget_linkIcon" />,
     color: "tp-f-fb",
+    type: 'phone'
   },
   {
-    link: "mailto:anna@chengyiauto.cn?subject=Subject%20of%20the%20email&body=Body%20of%20the%20email",
+    link: (value) => `mailto:${value || "anna@chengyiauto.cn"}?subject=Subject%20of%20the%20email&body=Body%20of%20the%20email`,
     target: "_blank",
     icon: <MailOutlined className="footer-widget_linkIcon" />,
     color: "tp-f-skype",
+    type: 'email'
   },
 ];
 
-const SocialLinks = () => {
+const SocialLinks = (data) => {
   return (
     <>
-      {social_links.map((l, i) => (
-        <a
+      {social_links.map((l, i) => {
+        return <a
           key={i}
-          href={l.link}
+          href={l.link(data[l.type])}
           className={l.color}
           target={l.target ? l.target : ""}
         >
           {l.icon}
         </a>
-      ))}
+      })}
     </>
   );
 };

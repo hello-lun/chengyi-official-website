@@ -47,9 +47,10 @@ const Sidebar = ({ isActive, setIsActive }) => {
           <i className="fal fa-times"></i>
         </button>
         <div className="tpsideinfo__logo mb-40">
-          <Link href="/">
+          <h2 style={{color: "#e9860c", marginTop: "8px"}}>CHENGYI</h2>
+          {/* <Link href="/">
             <img src="/assets/img/logo/white-logo.png" alt="logo" />
-          </Link>
+          </Link> */}
         </div>
 
         <div className="mobile-menu mean-container d-block d-lg-none">
@@ -65,13 +66,16 @@ const Sidebar = ({ isActive, setIsActive }) => {
           </p>
           <span>Contact Us</span>
           <a href="#">
-            <i className="fa-solid fa-star"></i>Ta-134/A, Gulshan Badda Link
+            <i className="fa-solid fa-star"></i>佛山市顺德区北滘镇慧聪家电城2座410(成益自动化)
           </a>
-          <a href="tel:61383766284">
-            <i className="fa-solid fa-star"></i>61 383 766 284
+          <a href="tel:+8613610307032">
+            <i className="fa-solid fa-star"></i>+8613610307032
           </a>
-          <a href="mailto:noreply@envato.com">
-            <i className="fa-solid fa-star"></i>noreply@envato.com
+          <a href="https://wa.me/+8613725293855?text=Hello">
+            <i className="fa-solid fa-star"></i>whatsapp
+          </a>
+          <a href="mailto:alissa@chengyiauto.cn">
+            <i className="fa-solid fa-star"></i>alissa@chengyiauto.cn
           </a>
         </div>
         <div className="tpsideinfo__content-inputarea mb-60 d-none d-xl-block">

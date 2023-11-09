@@ -86,7 +86,7 @@ const Gallery = () => {
   return (
     <>
       <section
-        className="gallery-area grey-bg pt-120 pb-130"
+        className="gallery-area grey-bg pt-120 pb-100"
         style={{ backgroundImage: `url(/assets/img/shape/shape-bg-01.png)` }}
       >
         <div className="container">

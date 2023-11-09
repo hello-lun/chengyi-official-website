@@ -4,6 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link.js";
 import { Navigation } from "swiper";
 import { MyContext } from '@/store';
+import styles from './commom.module.scss';
+import http from '@/utils/http';
+import SocialLinks from "@/common/social-links";
+
+const baseUrl = 'http://192.168.0.58:8888/api/';
 
 // slider setting
 const setting = {
@@ -41,8 +46,24 @@ const setting = {
 const Team = () => {
   const { storeData, setStoreData } = useContext(MyContext);
   const [isLoop, setIsLoop] = useState(false);
+  const [staffList, setStaffList] = useState([]);
+  
   useEffect(() => {
     setIsLoop(true);
+    http({
+      method: 'get',
+      url: '/staff/get',
+      data: {
+        page: 1,
+        size: 2
+      },
+    }).then(res => {
+      setStaffList(res?.map(item => ({
+        ...item,
+        social_links: SocialLinks(item),
+      })));
+    });
+
   }, []);
 
   const linkClick = (e, data) => {
@@ -87,39 +108,35 @@ const Team = () => {
             className="swiper-container team-active wow fadeInUp"
             data-wow-delay=".3s"
           >
-            <Swiper {...setting} loop={isLoop} modules={[Navigation]}>
-              {team_data.map((item) => (
-                <SwiperSlide key={item.id}>
-                  <div className="swiper-slide">
-                    <div className="tp-team mb-50">
-                      <div className="tp-team__thumb fix">
-                        <a href="#">
-                          <img src={item.img} alt="team-thumb" />
-                        </a>
-                      </div>
-                      <div className="tp-team__content">
-                        <h4 className="tp-team__title mb-15">
-                          <Link href="/team-details">{item.name}</Link>
-                        </h4>
-                        <span className="tp-team__position mb-30">
-                          {item.title}
-                        </span>
-                        <p>{item.des}</p>
-                        <div className="tp-team__social">
-                          {item.social_links.map((l, i) => (
-                            <span
-                              style={{fontSize: '20px', cursor: 'pointer', margin: '0 10px', color: 'var(--tp-theme-secondary)'}}
-                              key={i}
-                              className={l.color}
-                              onClick={(e) => linkClick(e, l)}>{l.icon}</span>
-                          ))}
+            { staffList.length > 0 &&
+              <Swiper {...setting} loop={isLoop} modules={[Navigation]}>
+                {staffList.map((item) => (
+                  <SwiperSlide key={item.id}>
+                    <div className="swiper-slide">
+                      <div className="tp-team mb-50">
+                        <div className="tp-team__thumb fix">
+                          <a href="#">
+                            <img src={baseUrl + item.img} alt="team-thumb" className={styles.image} />
+                          </a>
+                        </div>
+                        <div className="tp-team__content">
+                          <h4 className="tp-team__title mb-15">
+                            <Link href="/team-details">{item.name}</Link>
+                          </h4>
+                          <span className="tp-team__position mb-30">
+                            {item.title}
+                          </span>
+                          <p className={styles.pText}>{item.details}</p>
+                          <div className="tp-team__social">
+                            {item.social_links}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            }
           </div>
         </div>
       </section>
