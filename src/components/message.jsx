@@ -1,7 +1,7 @@
 import { message, Button, Drawer, Form, Input } from 'antd';
-import React, { useState, useRef, useContext } from "react";
-import http from '../../../utils/http';
-import { MyContext } from '../../../store';
+import React, { useState, useRef, useContext, useEffect } from "react";
+import http from '@/utils/http';
+import { useCommonState } from "@/store/commom";
 
 const { TextArea } = Input;
 
@@ -9,11 +9,11 @@ const Message = () => {
   const [msg, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const formRef = useRef(null);
-  const { storeData, setStoreData } = useContext(MyContext);
+  const commonData = useCommonState().data;
+  const changeCommonState = useCommonState().changeCommonState;
 
   const onClose = () => {
-    setStoreData({
-      ...storeData,
+    changeCommonState({
       messageOpen: false,
     });
     formRef.current.resetFields();
@@ -26,13 +26,14 @@ const Message = () => {
         method: 'post',
         url: '/message/email',
         data: {
+          text: '',
           html: `<div>
             <h3>Name: ${data.name}</h3>
             <h4>Contact information: ${data.information}</h4>
             <p style="margin-top: 30px; font-size: 20px; color: orange;">${data.message || '✔官网邮件发送测试'}</p>
           </div>`,
           subject: 'chengyi（成益）跨境贸易公司',
-          email: storeData.email,
+          email: 'kenjiding807@gmail.com',
         }
       });
       message.success('send message success') 
@@ -48,7 +49,7 @@ const Message = () => {
     title="Send Message"
     placement="right"
     onClose={onClose}
-    open={storeData.messageOpen}
+    open={commonData.messageOpen}
     width={400}
   >
     <Form

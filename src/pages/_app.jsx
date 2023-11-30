@@ -1,3 +1,4 @@
+import MessageDilog from "@/components/message";
 import "../styles/index.scss";
 
 if (typeof window !== "undefined") {
@@ -5,5 +6,8 @@ if (typeof window !== "undefined") {
 }
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return <>
+    <MessageDilog />
+    <Component {...pageProps} />;
+  </>
 }

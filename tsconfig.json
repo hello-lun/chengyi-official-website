@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/layout/footer/footer.jsx", "src/components/home/home/message.jsx"  ],
+, "src/layout/footer/footer.jsx", "src/components/message.jsx"  ],
   "exclude": [
     "node_modules"
   ],

@@ -1,11 +1,11 @@
 // external
-import Link from "next/link";
-import { useState, useEffect } from "react";
-// internal
-import VideoPopup from "@/modals/video-popup";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { bannerList } from './data';
 import { Navigation } from "swiper";
+import { useCommonState } from "@/store/commom";
+import { getImgURL } from "@/utils/utils.js";
+
+const baseImgUrl = getImgURL();
 
 // content
 const content = {
@@ -80,8 +80,9 @@ const setting = {
   },
 };
 
-const HeroBanner = () => {
+const HeroBanner = ({ bannersList = [] }) => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const commonData = useCommonState.getState().data;
 
   return (
     <>
@@ -94,29 +95,14 @@ const HeroBanner = () => {
               navigation
               modules={[Navigation]}
             >
-              {bannerList.map((item) => (
+              {commonData.bannerList?.map((item) => (
                 <SwiperSlide key={item.img}>
                   <div className="" style={{width: '100%', height: 'auto'}}>
-                    <img src={item.img} width="100%" height="auto" alt={item.desc} />
+                    <img src={baseImgUrl + item.img} width="100%" height="auto" alt={item.details} />
                   </div>
                 </SwiperSlide>
               ))}
             </Swiper>
-              
-            {/* <div className="row" style={{position: 'absolute', top: '0', left: '0', width: "100%", zIndex: '1000',}}>
-              <div className="col-xl-8">
-                <div className="banner__content pt-145 mb-135">
-                  <span className="banner__sub-title mb-20">{sub_title}</span>
-                  <h2 className="banner__title mb-30">{title}</h2>
-                  <p>{des}</p>
-                  <div className="banner__btn">
-                    <Link className="tp-btn" href="/contact">
-                      {btn_text2}
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
           <div className="banner__box-item">
             <div className="row">

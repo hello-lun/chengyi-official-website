@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Link from "next/link";
 import styles from './home.module.scss';
-import http from '@/utils/http';
-import { chunk } from 'lodash';
-import { isMobile } from "@/utils/utils";
+import { useCommonState } from "@/store/commom";
+import { getImgURL } from "@/utils/utils.js";
 
-const baseUrl = process.env.REACT_APP_IMG_URL;
+const baseImgUrl = getImgURL();
 
 // slider setting
 const setting = {
@@ -39,22 +38,10 @@ const setting = {
 
 
 const ServiceArea = () => {
-  const [isLoop, setIsLoop] = useState(false);
-  const [goodsList, setGoodsList] = useState([]);
-  useEffect(() => {
-    setIsLoop(true);
-    http({
-      method: 'get',
-      url: '/goods/get',
-      data: {
-        page: 1,
-        size: 2
-      },
-    }).then(res => {
-      setGoodsList(chunk(res?.list, isMobile() ? 4 : 8));
-    });
-
-  }, []);
+  const goodsList = useCommonState(state => {
+    return state.data.goodsList;
+  });
+  
   return (
     <>
       <section
@@ -84,10 +71,10 @@ const ServiceArea = () => {
           </div>
           <div className="services-slider  wow fadeInUp" data-wow-delay=".3s">
             <div className={styles["goods"]}>
-              { goodsList.length > 0 && 
+              {goodsList.length > 0 &&
                 <Swiper
                   {...setting}
-                  loop={isLoop}
+                  loop
                   modules={[Navigation]}
                 >
                   {goodsList.map((item, index) => (
@@ -97,7 +84,7 @@ const ServiceArea = () => {
                           item.map(ele => (
                             <li key={ele.id}>
                               <div>
-                                <img src={baseUrl + ele.images} alt="" />
+                                <img src={baseImgUrl + ele.images} alt="" />
                               </div>
                               <div className={styles.content}>
                                 <div className={styles.title}>{ele.title}</div>
@@ -107,19 +94,19 @@ const ServiceArea = () => {
                           ))
                         }
                       </ul>
-                      {/* <div className="services-item mb-30" style={{padding: 0}}>
-                        <img src={item.img} width="100%" height="100%" />
-                        <div className="services-item__content" style={{padding: "0 50px 10px 50px"}}>
-                          <h4 className={`services-item__tp-title mb-20 ${styles["ellipsis-1"]}`}>
-                            <Link href="/services-details">{item.title}</Link>
-                          </h4>
-                          <p style={{marginBottom: '10px'}} className={styles["ellipsis-3"]}>{item.des}</p>
-                        </div>
-                      </div> */}
                     </SwiperSlide>
                   ))}
                 </Swiper>
               }
+            </div>
+            <div className="container">
+              <div className="row text-center">
+                <div className="col-lg-12">
+                  <Link href="/goods" className="tp-btn-second">
+                    Search more
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>

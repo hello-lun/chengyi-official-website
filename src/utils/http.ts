@@ -5,7 +5,7 @@ import axios, {
   InternalAxiosRequestConfig
 } from 'axios';
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL + '/api';
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_PROXY_API_PRE;
 axios.defaults.headers.head['Content-Type'] = 'application/json;chartset=utf-8';
 axios.defaults.withCredentials = true;
 export interface IResponse<T = any> {
@@ -59,5 +59,11 @@ const http = <T>(configs: AxiosRequestConfig): Promise<IResponse<T>> => {
 
   return axiosInstance.request(configs);
 };
+
+
+export const requestInternal = (options: AxiosRequestConfig) => {
+  options.baseURL = '/api';
+  return http(options);
+}
 
 export default http;

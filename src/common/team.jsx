@@ -1,14 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
-import team_data from "../data/team.js";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link.js";
 import { Navigation } from "swiper";
-import { MyContext } from '@/store';
 import styles from './commom.module.scss';
-import http from '@/utils/http';
-import SocialLinks from "@/common/social-links";
+import { useCommonState } from "@/store/commom";
+import { getImgURL } from "@/utils/utils.js";
 
-const baseUrl = process.env.REACT_APP_IMG_URL;
+const baseImgUrl = getImgURL();
 
 // slider setting
 const setting = {
@@ -44,33 +42,15 @@ const setting = {
 };
 
 const Team = () => {
-  const { storeData, setStoreData } = useContext(MyContext);
-  const [isLoop, setIsLoop] = useState(false);
-  const [staffList, setStaffList] = useState([]);
-  
-  useEffect(() => {
-    setIsLoop(true);
-    http({
-      method: 'get',
-      url: '/staff/get',
-      data: {
-        page: 1,
-        size: 2
-      },
-    }).then(res => {
-      setStaffList(res?.map(item => ({
-        ...item,
-        social_links: SocialLinks(item),
-      })));
-    });
-
-  }, []);
+  const changeCommonState = useCommonState.getState().changeCommonState;
+  const teamList = useCommonState(state => {
+    return state.data.teamList;
+  });
 
   const linkClick = (e, data) => {
     e.stopPropagation();
     if (data.name === 'email') {
-      setStoreData({
-        ...storeData,
+      changeCommonState({
         messageOpen: true,
         email: data.value,
       });
@@ -108,15 +88,15 @@ const Team = () => {
             className="swiper-container team-active wow fadeInUp"
             data-wow-delay=".3s"
           >
-            { staffList.length > 0 &&
-              <Swiper {...setting} loop={isLoop} modules={[Navigation]}>
-                {staffList.map((item) => (
+            { teamList.length > 0 &&
+              <Swiper {...setting} loop modules={[Navigation]}>
+                {teamList.map((item) => (
                   <SwiperSlide key={item.id}>
                     <div className="swiper-slide">
                       <div className="tp-team mb-50">
                         <div className="tp-team__thumb fix">
                           <a href="#">
-                            <img src={baseUrl + item.img} alt="team-thumb" className={styles.image} />
+                            <img src={baseImgUrl + item.img} alt="team-thumb" className={styles.image} />
                           </a>
                         </div>
                         <div className="tp-team__content">

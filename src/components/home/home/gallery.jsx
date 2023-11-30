@@ -64,7 +64,6 @@ const gallery_content = [
   },
 ];
 
-
 const Gallery = () => {
   const [isLoop, setIsLoop] = useState(false);
   useEffect(() => {
@@ -125,11 +124,11 @@ const Gallery = () => {
                       </div>
                       <div className="tp-gallery__content">
                         <h4 className="tp-gallery__title">
-                          <Link href="/portfolio-details">{item.text1}</Link>
+                          <Link href="/goods">{item.text1}</Link>
                         </h4>
                         <span>
                           <i className="fa-solid fa-tag"></i>
-                          <Link href="/services-details">{item.text2}</Link>
+                          <Link href="/goods">{item.text2}</Link>
                         </span>
                       </div>
                     </div>
@@ -142,8 +141,8 @@ const Gallery = () => {
         <div className="container">
           <div className="row text-center">
             <div className="col-lg-12">
-              <Link className="tp-btn-second" href="/portfolio-details">
-                Explore More
+              <Link className="tp-btn-second" href="/goods">
+                Search more
               </Link>
             </div>
           </div>

@@ -1,4 +1,4 @@
-@use "../../../../public/assets/scss/utils/breakpoints";
+@use "/public/assets/scss/utils/breakpoints";
 
 @import "/public/assets/scss/utils/_mixins.scss";
 
@@ -24,19 +24,20 @@
 }
 
 .imgContent {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
   list-style: none;
+  padding-top: 40px;
 
   @media #{breakpoints.$xs} {
     gap: 10px;
+    grid-template-columns: 1fr 1fr;
   }
 
   li {
     padding: 0;
-    flex: 1 0 23%;
-    max-width: 23%;
+    max-width: 250px;
     box-sizing: border-box;
     border: 1px solid #ddd;
     padding: 15px 15px;
@@ -45,8 +46,6 @@
     cursor: pointer;
 
     @media #{breakpoints.$xs} {
-      flex: 1 0 48%;
-      max-width: 48%;
       padding: 0;
     }
 
@@ -60,7 +59,6 @@
 
     .content {
       @media #{breakpoints.$xs} {
-        padding: 0 10px;
       }
     }
 

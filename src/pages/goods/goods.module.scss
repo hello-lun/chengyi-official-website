@@ -1,0 +1,166 @@
+@use "/public/assets/scss/utils/breakpoints";
+@import "/public/assets/scss/utils/_mixins.scss";
+
+.main {
+  padding: 0 30px 30px 30px;
+}
+
+.slue {
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow:ellipsis;
+}
+
+.common {
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 20px;
+    list-style: none;
+
+    @media #{breakpoints.$xs} {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  li {
+    border-radius: 10px;
+    box-sizing: content-box;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    &:hover {
+      border: 1px solid var(--tp-theme-secondary);
+      p {
+        color: var(--tp-theme-secondary);
+      }
+    }
+  }
+}
+
+.active {
+  border: 1px solid var(--tp-theme-secondary) !important;
+  box-shadow: 3px 5px 5px #ddd;
+  p {
+    color: var(--tp-theme-secondary);
+  }
+}
+
+.category {
+  padding: 0 20px 20px 100px;
+
+  @media #{breakpoints.$xs} {
+    padding: 20px 0;
+  }
+
+  &-title {
+    text-align: center;
+    font-weight: 500;
+    padding: 5px 10px;
+    margin: 0;
+
+    &:hover {
+      color: var(--tp-theme-secondary);
+    }
+  }
+
+  ul {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+.brand {
+  padding: 20px 100px;
+
+  @media #{breakpoints.$xs} {
+    padding: 20px 0;
+  }
+
+  img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    height: 60px;
+    object-fit: cover; 
+  }
+
+  .title {
+    text-align: center;
+    margin: 0;
+    padding: 5px 5px;
+    @include ellipsis(1);
+  }
+}
+
+
+.imgContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding-top: 20px;
+
+  @media #{breakpoints.$xs} {
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  li {
+    padding: 0;
+    max-width: 250px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    padding: 15px 15px;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+
+    @media #{breakpoints.$xs} {
+      padding: 0;
+    }
+
+
+    &:hover {
+      box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.5);
+      .mask {
+        opacity: 0.6;
+      }
+    }
+
+    .content {
+      @media #{breakpoints.$xs} {
+        padding: 0;
+      }
+    }
+
+    .title {
+      padding: 15px 0;
+      font-size: 22px;
+      // @include ellipsis(1);
+      overflow:hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      -o-text-overflow:ellipsis;
+      font-weight: 500;
+
+      @media #{breakpoints.$xs} {
+        font-size: 18px;
+      }
+    }
+
+    .pText {
+      @include ellipsis;
+    }
+
+    img {
+      width: 100%; /* 使图片填满列表项 */
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+      @media #{breakpoints.$xs} {
+        height: 130px;
+      }
+    }
+  }
+}

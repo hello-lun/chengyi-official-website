@@ -1,11 +1,10 @@
 import SocialLinks from "@/common/social-links";
 import Link from "next/link";
 import React, { useRef, useContext } from "react";
-import { useState } from "react";
-import { message, Button, Drawer, Form, Input } from 'antd';
+import { Button } from 'antd';
 import { SendOutlined } from '@ant-design/icons';
 import styles from './footer.module.scss';
-import { MyContext } from '@/store';
+import { useCommonState } from "@/store/commom";
 
 const footer_content = {
   footer_info: [
@@ -60,12 +59,11 @@ const footer_content = {
 
 const { footer_info, copy_right_text } = footer_content;
 const Footer = () => {
-  const { storeData, setStoreData } = useContext(MyContext);
+  const changeCommonState = useCommonState.getState().changeCommonState;
 
   const sendEmail = async (e) => {
     e.preventDefault();
-    setStoreData({
-      ...storeData,
+    changeCommonState({
       messageOpen: true,
     });
   }

@@ -7,7 +7,6 @@ import Counter from "../../../common/counter";
 import Cta_Area from "./cta-area";
 import Feedback from "./feedback";
 import Gallery from "./gallery";
-import MessageDilog from "./message";
 import HeroBanner from "./hero-banner";
 import ServiceArea from "./service-area";
 import Specialists from "../../../common/specialists";
@@ -16,7 +15,6 @@ import Team from "../../../common/team";
 const HomeOne = () => {
   return (
     <>
-      <MessageDilog />
       <HeroBanner />
       <Gallery />
       <ServiceArea />
